@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>植物识别仪表盘</title>
+<style>
+  :root {
+    --bg: #0f1923;
+    --card-bg: #1a2733;
+    --border: #2a3a4a;
+    --text: #e0e8f0;
+    --text-dim: #7a8a9a;
+    --green: #4ade80;
+    --yellow: #facc15;
+    --red: #f87171;
+    --cyan: #22d3ee;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .header h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, var(--green), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header .status-row {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+  .status-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  .status-dot.online  { background: var(--green); }
+  .status-dot.offline { background: var(--red); }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    border-radius: 12px;
+    padding: 28px 32px;
+    min-width: 340px;
+    max-width: 480px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .card:hover {
+    border-color: #3a5a7a;
+    transform: translateY(-1px);
+  }
+
+  .card-section {
+    margin-bottom: 20px;
+  }
+  .card-section:last-child { margin-bottom: 0; }
+
+  .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+
+  .value {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+    word-break: break-all;
+  }
+  .value.conf {
+    font-size: 2rem;
+  }
+  .value.no-data {
+    color: #4a5a6a;
+    font-style: italic;
+  }
+  .unit {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-dim);
+  }
+
+  .bar-wrap {
+    margin-top: 6px;
+    background: #0d1a26;
+    border-radius: 8px;
+    height: 12px;
+    overflow: hidden;
+  }
+  .bar {
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.6s ease;
+  }
+
+  .timestamp {
+    font-size: 0.7rem;
+    color: #4a5a6a;
+    margin-top: 10px;
+    text-align: right;
+  }
+
+  @media (max-width: 480px) {
+    .card { min-width: auto; padding: 20px; }
+    .value { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div style="text-align:center;">
+  <div class="header">
+    <h1>Plant Recognition</h1>
+    <div class="status-row">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusLabel">连接中...</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-section">
+      <div class="label">识别植物</div>
+      <div class="value" id="nameVal">--</div>
+    </div>
+    <div class="card-section">
+      <div class="label">置信度</div>
+      <div style="display:flex;align-items:baseline;gap:4px;">
+        <span class="value conf" id="confVal">--</span>
+        <span class="unit">%</span>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar" id="confBar" style="width:0;"></div>
+      </div>
+    </div>
+    <div class="timestamp" id="timeVal"></div>
+  </div>
+</div>
+
+<script>
+async function fetchData() {
+  try {
+    const resp = await fetch('/api/status');
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const d = await resp.json();
+
+    document.getElementById('statusDot').className = 'status-dot ' + (d.status === 'running' ? 'online' : 'offline');
+    const labels = {running: '运行中', no_camera: '无摄像头', no_token: 'Token获取失败', initializing: '初始化中'};
+    document.getElementById('statusLabel').textContent = labels[d.status] || d.status;
+
+    document.getElementById('nameVal').textContent = d.plant_name || '--';
+    document.getElementById('nameVal').className = 'value' + (d.plant_name ? '' : ' no-data');
+
+    const conf = d.confidence || 0;
+    document.getElementById('confVal').textContent = conf;
+    const bar = document.getElementById('confBar');
+    bar.style.width = conf + '%';
+    bar.style.background = conf >= 80 ? 'var(--green)' : conf >= 50 ? 'var(--yellow)' : 'var(--red)';
+
+    document.getElementById('timeVal').textContent = d.last_recognition ? '更新: ' + d.last_recognition : '';
+  } catch (err) {
+    document.getElementById('statusDot').className = 'status-dot offline';
+    document.getElementById('statusLabel').textContent = '连接失败';
+  }
+}
+
+fetchData();
+setInterval(fetchData, 2000);
+</script>
+
+</body>
+</html>

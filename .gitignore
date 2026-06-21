@@ -1,0 +1,24 @@
+# Build
+build/
+*.o
+*.obj
+*.bin
+*.hex
+*.map
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+Makefile
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temp
+__pycache__/
+*.pyc
+*.pyo
+/tmp/

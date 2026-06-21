@@ -1,0 +1,43 @@
+﻿[1/3] Building C object CMakeFiles/PLANT_ASSISTANT.dir/F_/download/1111/plant_assistant/demo/Project/GD32F470Z_BSP/src/c3.c.obj
+F:/download/1111/plant_assistant/demo/Project/GD32F470Z_BSP/src/c3.c: In function 'c3_wifi_tcp_init':
+F:/download/1111/plant_assistant/demo/Project/GD32F470Z_BSP/src/c3.c:294:9: warning: 'recv_cnt' may be used uninitialized [-Wmaybe-uninitialized]
+  294 |         memcpy(rec_data,recv_buf,recv_cnt);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:/download/1111/plant_assistant/demo/Project/GD32F470Z_BSP/src/c3.c:139:25: note: 'recv_cnt' was declared here
+  139 |         int             recv_cnt;
+      |                         ^~~~~~~~
+F:/download/1111/plant_assistant/demo/Project/GD32F470Z_BSP/src/c3.c: In function 'c3_wifi_tcp_send':
+F:/download/1111/plant_assistant/demo/Project/GD32F470Z_BSP/src/c3.c:380:9: warning: 'strncpy' output truncated before terminating nul copying as many bytes from a string as its length [-Wstringop-truncation]
+  380 |         strncpy(send_buffer,(const char*)send_data,len);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:/download/1111/plant_assistant/demo/Project/GD32F470Z_BSP/src/c3.c:374:15: note: length computed here
+  374 |         len = strlen(send_data);
+      |               ^~~~~~~~~~~~~~~~~
+[2/3] Building C object CMakeFiles/PLANT_ASSISTANT.dir/F_/download/1111/plant_assistant/demo/Project/GD32F470Z_BSP/src/uart.c.obj
+[3/3] Linking C executable PLANT_ASSISTANT; Firmware size:; Generated: F:/download/1111/plant_assistant/demo/Project/CMAKE_Project/build/PLANT_ASSISTANT.hex
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-closer.o): in function `_close_r':
+closer.c:(.text._close_r+0xc): warning: _close is not implemented and will always fail
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-closer.o): note: the message above does not take linker garbage collection into account
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fstatr.o): in function `_fstat_r':
+fstatr.c:(.text._fstat_r+0xe): warning: _fstat is not implemented and will always fail
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-fstatr.o): note: the message above does not take linker garbage collection into account
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o): in function `_getpid_r':
+signalr.c:(.text._getpid_r+0x0): warning: _getpid is not implemented and will always fail
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o): note: the message above does not take linker garbage collection into account
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-isattyr.o): in function `_isatty_r':
+isattyr.c:(.text._isatty_r+0xc): warning: _isatty is not implemented and will always fail
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-isattyr.o): note: the message above does not take linker garbage collection into account
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o): in function `_kill_r':
+signalr.c:(.text._kill_r+0xe): warning: _kill is not implemented and will always fail
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-signalr.o): note: the message above does not take linker garbage collection into account
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lseekr.o): in function `_lseek_r':
+lseekr.c:(.text._lseek_r+0x10): warning: _lseek is not implemented and will always fail
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-lseekr.o): note: the message above does not take linker garbage collection into account
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-readr.o): in function `_read_r':
+readr.c:(.text._read_r+0x10): warning: _read is not implemented and will always fail
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-readr.o): note: the message above does not take linker garbage collection into account
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-writer.o): in function `_write_r':
+writer.c:(.text._write_r+0x10): warning: _write is not implemented and will always fail
+F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/bin/ld.exe: F:/anzhuang/arm-gun-gcc/bin/../lib/gcc/arm-none-eabi/15.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-writer.o): note: the message above does not take linker garbage collection into account
+   text	   data	    bss	    dec	    hex	filename
+  29316	    468	   3212	  32996	   80e4	F:/download/1111/plant_assistant/demo/Project/CMAKE_Project/build/PLANT_ASSISTANT
